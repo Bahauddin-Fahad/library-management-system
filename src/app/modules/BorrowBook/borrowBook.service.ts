@@ -49,7 +49,21 @@ const borrowBooksFromDB = async (payload: {
 
   return result;
 };
+const returnBooksToDB = async (payload: { borrowId: string }) => {
+  await prisma.borrowRecord.findUniqueOrThrow({
+    where: { borrowId: payload.borrowId },
+  });
 
+  const result = await prisma.borrowRecord.update({
+    where: { borrowId: payload.borrowId },
+    data: {
+      returnDate: new Date(),
+    },
+  });
+
+  return result;
+};
 export const BorrowBookServices = {
   borrowBooksFromDB,
+  returnBooksToDB,
 };
