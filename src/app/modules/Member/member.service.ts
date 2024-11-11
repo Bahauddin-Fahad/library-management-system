@@ -24,9 +24,37 @@ const getSingleMemberFromDB = async (memberId: string) => {
 
   return result;
 };
+const updateMemberIntoDB = async (
+  payload: Prisma.MemberUpdateInput,
+  memberId: string
+) => {
+  await prisma.member.findUniqueOrThrow({
+    where: { memberId },
+  });
+
+  const result = await prisma.member.update({
+    where: { memberId },
+    data: payload,
+  });
+  return result;
+};
+
+const deleteMemberFromDB = async (memberId: string) => {
+  await prisma.member.findUniqueOrThrow({
+    where: { memberId },
+  });
+
+  const result = await prisma.member.delete({
+    where: { memberId },
+  });
+
+  return result;
+};
 
 export const MemberServices = {
   createMemberIntoDB,
   getAllMembersFromDB,
   getSingleMemberFromDB,
+  updateMemberIntoDB,
+  deleteMemberFromDB,
 };

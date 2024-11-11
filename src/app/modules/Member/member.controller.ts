@@ -54,8 +54,35 @@ const getSingleMember = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const updateMember = catchAsync(async (req, res) => {
+  const { memberId } = req.params;
+
+  const result = await MemberServices.updateMemberIntoDB(req.body, memberId);
+
+  sendResponse(res, {
+    success: true,
+    status: httpStatus.OK,
+    message: "Member updated successfully",
+    data: result,
+  });
+});
+
+const deleteMember = catchAsync(async (req, res) => {
+  const { memberId } = req.params;
+
+  await MemberServices.deleteMemberFromDB(memberId);
+
+  sendResponse(res, {
+    success: true,
+    status: httpStatus.OK,
+    message: "Member successfully deleted",
+  });
+});
+
 export const MemberControllers = {
   createMember,
   getAllMembers,
   getSingleMember,
+  updateMember,
+  deleteMember,
 };

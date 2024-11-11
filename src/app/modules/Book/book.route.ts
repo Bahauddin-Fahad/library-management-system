@@ -15,7 +15,10 @@ router
 router
   .route("/:bookId")
   .get(BookControllers.getSingleBook)
-  .put(BookControllers.updateBook)
+  .put(
+    validateRequest(BookValidations.updateBookValidationSchema),
+    BookControllers.updateBook
+  )
   .delete(BookControllers.deleteBook);
 
 export const BookRoutes = router;

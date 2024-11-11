@@ -13,6 +13,13 @@ router
   )
   .get(MemberControllers.getAllMembers);
 
-router.route("/:memberId").get(MemberControllers.getSingleMember);
+router
+  .route("/:memberId")
+  .get(MemberControllers.getSingleMember)
+  .put(
+    validateRequest(MemberValidations.updateMemberValidationSchema),
+    MemberControllers.updateMember
+  )
+  .delete(MemberControllers.deleteMember);
 
 export const MemberRoutes = router;
