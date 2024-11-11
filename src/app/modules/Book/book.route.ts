@@ -12,6 +12,10 @@ router
   )
   .get(BookControllers.getAllBooks);
 
-router.route("/:bookId").get(BookControllers.getSingleBook);
+router
+  .route("/:bookId")
+  .get(BookControllers.getSingleBook)
+  .put(BookControllers.updateBook)
+  .delete(BookControllers.deleteBook);
 
 export const BookRoutes = router;
