@@ -1,4 +1,4 @@
-import express, { Application, NextFunction, Request, Response } from "express";
+import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import globalErrorHandler from "./app/middlewares/globalErrorHandler";
 import router from "./app/routes";
@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req: Request, res: Response) => {
   res.send({
-    Message: "Initial Server..",
+    Message: "Library Management Server..",
   });
 });
 
