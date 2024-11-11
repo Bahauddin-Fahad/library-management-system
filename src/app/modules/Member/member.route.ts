@@ -13,4 +13,6 @@ router
   )
   .get(MemberControllers.getAllMembers);
 
+router.route("/:memberId").get(MemberControllers.getSingleMember);
+
 export const MemberRoutes = router;
