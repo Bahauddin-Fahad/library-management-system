@@ -62,7 +62,7 @@ const updateBook = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     status: httpStatus.OK,
-    message: "Book updated successfully",
+    message: "Book updated successfully.",
     data: result,
   });
 });
